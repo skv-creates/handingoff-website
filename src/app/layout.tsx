@@ -25,6 +25,13 @@ export const metadata: Metadata = {
     icon: "/assets/favicon-32.png",
     apple: "/assets/favicon-180.png",
   },
+  openGraph: {
+    images: ["/assets/handingoff-graph-cover-01.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/assets/handingoff-graph-cover-01.png"],
+  },
 };
 
 export default function RootLayout({
