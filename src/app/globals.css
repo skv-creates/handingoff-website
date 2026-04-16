@@ -56,3 +56,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes voice-bar {
+  0%, 100% { transform: scaleY(0.25); }
+  50% { transform: scaleY(1); }
+}
+
+.hero-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, white 2px, transparent 2px),
+    radial-gradient(circle, white 2px, transparent 2px);
+  background-size: 8px 4.6px;
+  background-position: 0 0, 4px 2.3px;
+  opacity: 0.1;
+  mask-image: url("/assets/texture.svg");
+  -webkit-mask-image: url("/assets/texture.svg");
+  mask-size: cover;
+  -webkit-mask-size: cover;
+  pointer-events: none;
+}

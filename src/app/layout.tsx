@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://handingoff-website.vercel.app"),
   title: "Handingoff — Screen recordings for AI",
   description:
     "Screen recordings transcribed into structured context — video, network requests, console logs — ready for any AI agent.",
