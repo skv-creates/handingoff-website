@@ -50,7 +50,7 @@ export function SectionHowItWorks() {
               {i < steps.length - 1 && (
                 <div
                   className="absolute hidden h-px bg-[var(--color-border-subtle)] sm:block"
-                  style={{ top: 16, left: 40, right: 0 }}
+                  style={{ top: 16, left: 40, right: 8 }}
                 />
               )}
 
