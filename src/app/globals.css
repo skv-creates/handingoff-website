@@ -4,6 +4,7 @@
   /* Colors */
   --color-page: #273970;
   --color-brand: #0b5aff;
+  --color-brand-hover: #174BC4;
   --color-surface: rgba(255, 255, 255, 0.1);
   --color-surface-secondary: rgba(255, 255, 255, 0.05);
   --color-border-default: rgba(255, 255, 255, 0.2);

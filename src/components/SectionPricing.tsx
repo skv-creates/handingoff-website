@@ -14,7 +14,7 @@ export function SectionPricing() {
   return (
     <section
       id="pricing"
-      className="flex w-full items-stretch justify-center"
+      className="flex w-full items-stretch justify-center gap-[3px]"
     >
       {/* Left decorative lines */}
       <div className="hidden flex-col items-center justify-between lg:flex lg:flex-1">
@@ -23,7 +23,9 @@ export function SectionPricing() {
       </div>
 
       {/* Center content */}
-      <div className="flex w-full max-w-[800px] shrink-0 flex-col items-center">
+      <div
+        className="relative flex w-full max-w-[800px] shrink-0 flex-col items-center overflow-hidden"
+      >
         <SeparatorHorizontal />
 
         <div className="flex w-full items-stretch py-[3px]">
@@ -41,20 +43,20 @@ export function SectionPricing() {
             </div>
 
             {/* Pricing card */}
-            <div className="mt-[80px] flex w-full max-w-[480px] flex-col gap-[64px] rounded-[20px] border border-white/20 bg-[var(--color-surface-secondary)] px-[24px] pb-[22px] pt-[32px]">
+            <div className="mt-[80px] flex w-full max-w-[480px] flex-col gap-[64px] rounded-[20px] border border-white/20 bg-[var(--color-surface-secondary)] px-[24px] pb-[22px] pt-[32px] backdrop-blur-[24px]">
               {/* Card header */}
-              <div className="flex items-end justify-between border-b border-white/40 pb-[32px]">
+              <div className="flex items-baseline justify-between border-b border-white/40 pb-[32px]">
                 <h3 className="font-heading text-[30px] font-[620] leading-[1.1] tracking-[-0.3px] text-white">
                   Pay as you go.
                   <br />
                   No subscription.
                 </h3>
-                <div className="flex items-end gap-[4px] pb-[5px]">
+                <div className="flex items-baseline gap-[4px]">
                   <span
-                    className="font-body text-[24px] font-semibold leading-[1.1] tracking-[-2.16px] text-white"
+                    className="font-body text-[24px] font-semibold leading-[1.1] text-white"
                     style={{ fontFeatureSettings: "'lnum' 1, 'tnum' 1" }}
                   >
-                    $ 0.10
+                    $0.10
                   </span>
                   <span className="font-body text-[12px] font-semibold leading-[1.1] text-white/40">
                     /min
@@ -79,7 +81,7 @@ export function SectionPricing() {
               {/* CTA button */}
               <a
                 href="#download"
-                className="flex h-[44px] w-full items-center justify-center rounded-[var(--radius-full)] border border-white/30 bg-[var(--color-brand)] px-[var(--space-xl)] py-[var(--space-md)] font-body text-[12px] font-[510] leading-[1.4] tracking-[0.05px] text-white transition-opacity hover:opacity-90"
+                className="flex h-[44px] w-full items-center justify-center rounded-[var(--radius-full)] border border-white/30 bg-[var(--color-brand)] px-[var(--space-xl)] py-[var(--space-md)] font-body text-[12px] font-[510] leading-[1.4] tracking-[0.05px] text-white transition-colors hover:bg-[var(--color-brand-hover)]"
               >
                 Get started
               </a>
