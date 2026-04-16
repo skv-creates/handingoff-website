@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   title: "Handingoff — Screen recordings for AI",
   description:
     "Screen recordings transcribed into structured context — video, network requests, console logs — ready for any AI agent.",
+  icons: {
+    icon: "/assets/favicon-32.png",
+    apple: "/assets/favicon-180.png",
+  },
 };
 
 export default function RootLayout({
