@@ -89,9 +89,9 @@ export function CustomCursor({
       }}
     >
       {/* Arrow */}
-      <div style={{ width: 27, height: 29, transform: "rotate(-45deg)" }}>
+      <div style={{ width: 23, height: 25, transform: "rotate(-45deg)" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/cursor-arrow.svg" alt="" width={27} height={29} />
+        <img src="/assets/cursor-arrow.svg" alt="" width={23} height={25} />
       </div>
 
       {/* Voice wave badge */}
