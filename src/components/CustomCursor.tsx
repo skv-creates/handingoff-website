@@ -2,13 +2,24 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const BARS: { height: number; duration: string; delay: string }[] = [
-  { height: 9,  duration: "1.1s", delay: "0ms"   },
-  { height: 13, duration: "1.3s", delay: "180ms"  },
-  { height: 16, duration: "0.9s", delay: "90ms"   },
-  { height: 13, duration: "1.2s", delay: "270ms"  },
-  { height: 9,  duration: "1.0s", delay: "360ms"  },
-];
+// Heights match the Figma design (symmetric, tallest in center)
+const BAR_HEIGHTS = [9, 13, 16, 13, 9];
+
+// Weighted random scale — favors mid-range, mimics speech amplitude distribution
+function randomScale() {
+  const r = Math.random();
+  if (r < 0.15) return 0.2 + Math.random() * 0.1;  // quiet pause between words
+  if (r < 0.75) return 0.35 + Math.random() * 0.4;  // normal pronunciation
+  return 0.7 + Math.random() * 0.25;                 // stressed syllable
+}
+
+// Variable delay — mix of quick syllables and slower ones
+function randomDelay() {
+  const r = Math.random();
+  if (r < 0.35) return 80  + Math.random() * 100; // short word / quick syllable
+  if (r < 0.75) return 200 + Math.random() * 200; // normal word
+  return 420 + Math.random() * 200;               // longer word / pause
+}
 
 export function CustomCursor({
   containerRef,
@@ -16,8 +27,10 @@ export function CustomCursor({
   containerRef: React.RefObject<HTMLElement | null>;
 }) {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [visible, setVisible] = useState(false);
 
+  // Mouse tracking — direct DOM mutation to avoid re-renders per frame
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -40,6 +53,26 @@ export function CustomCursor({
       el.removeEventListener("mouseleave", onLeave);
     };
   }, [containerRef]);
+
+  // Speech-like animation loop — each bar runs its own independent timer
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+
+    const animateBar = (i: number) => {
+      const bar = barRefs.current[i];
+      if (bar) {
+        bar.style.transform = `scaleY(${randomScale()})`;
+      }
+      timers[i] = setTimeout(() => animateBar(i), randomDelay());
+    };
+
+    // Stagger bar starts so they don't all kick off together
+    BAR_HEIGHTS.forEach((_, i) => {
+      timers[i] = setTimeout(() => animateBar(i), i * 70 + Math.random() * 80);
+    });
+
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   return (
     <div
@@ -83,17 +116,18 @@ export function CustomCursor({
             gap: 1,
           }}
         >
-          {BARS.map((bar, i) => (
+          {BAR_HEIGHTS.map((h, i) => (
             <div
               key={i}
+              ref={(el) => { barRefs.current[i] = el; }}
               style={{
                 width: 2,
-                height: bar.height,
+                height: h,
                 backgroundColor: "var(--color-brand)",
                 borderRadius: 9999,
                 transformOrigin: "center",
-                animation: `voice-bar ${bar.duration} ease-in-out infinite`,
-                animationDelay: bar.delay,
+                transform: "scaleY(0.3)",
+                transition: "transform 110ms ease-out",
               }}
             />
           ))}

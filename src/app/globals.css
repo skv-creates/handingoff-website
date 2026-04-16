@@ -57,11 +57,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes voice-bar {
-  0%, 100% { transform: scaleY(0.3); }
-  40%       { transform: scaleY(0.75); }
-  65%       { transform: scaleY(0.45); }
-}
 
 .hero-texture::before {
   content: "";
