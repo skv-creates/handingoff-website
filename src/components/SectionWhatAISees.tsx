@@ -23,7 +23,7 @@ export function SectionWhatAISees() {
       {/* Dimming overlay */}
       <div
         className="pointer-events-none absolute inset-0 transition-opacity duration-500"
-        style={{ background: "rgba(0,0,0,0.4)", opacity: dimmed ? 1 : 0 }}
+        style={{ background: "rgba(0,0,0,0.12)", opacity: dimmed ? 1 : 0 }}
       />
 
       <div className="relative flex w-full max-w-[800px] flex-col items-center gap-[75px]">
