@@ -1,10 +1,32 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Logo } from "./Logo";
 
 export function SectionWhatAISees() {
+  const [dimmed, setDimmed] = useState(false);
+
   return (
-    <section className="flex w-full flex-col items-center justify-center px-[var(--space-lg)] py-[80px]">
-      <div className="flex w-full max-w-[800px] flex-col items-center gap-[75px]">
+    <section
+      id="what-ai-sees"
+      className="relative flex w-full flex-col items-center justify-center px-[var(--space-lg)] py-[80px]"
+      style={{
+        backgroundImage: [
+          "radial-gradient(circle, rgba(255,255,255,0.05) 2px, transparent 2px)",
+          "radial-gradient(circle, rgba(255,255,255,0.05) 2px, transparent 2px)",
+        ].join(", "),
+        backgroundSize: "8px 4.6px",
+        backgroundPosition: "0 0, 4px 2.3px",
+      }}
+    >
+      {/* Dimming overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{ background: "rgba(0,0,0,0.4)", opacity: dimmed ? 1 : 0 }}
+      />
+
+      <div className="relative flex w-full max-w-[800px] flex-col items-center gap-[75px]">
         {/* Section header */}
         <div className="flex w-full flex-col items-start gap-[16px]">
           <p className="font-mono text-[12px] font-medium leading-[1.5] text-[var(--color-text-secondary)]">
@@ -19,7 +41,11 @@ export function SectionWhatAISees() {
         </div>
 
         {/* Example UI window */}
-        <div className="flex w-full flex-col items-start overflow-hidden rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface)]">
+        <div
+          className="flex w-full flex-col items-start overflow-hidden rounded-[20px] border border-[var(--color-border-default)] bg-[var(--color-surface-secondary)] backdrop-blur-[24px]"
+          onMouseEnter={() => setDimmed(true)}
+          onMouseLeave={() => setDimmed(false)}
+        >
           {/* Window header */}
           <div className="flex w-full items-center gap-[12px] border-b border-[var(--color-border-default)] px-[16px] py-[12px]">
             <Image
@@ -79,13 +105,23 @@ export function SectionWhatAISees() {
         </div>
 
         {/* Integrations */}
-        <div className="flex w-full flex-col items-start gap-[22px]">
+        <div className="flex w-full self-start flex-col items-start gap-[22px] sm:w-1/2">
           <div className="flex items-center gap-[8px]">
             <Logo variant="icon" />
-            <Image src="/assets/logo-chatgpt.svg" alt="ChatGPT" width={48} height={48} />
-            <Image src="/assets/logo-claude.svg" alt="Claude" width={48} height={48} />
-            <Image src="/assets/logo-cursor.svg" alt="Cursor" width={48} height={48} />
-            <Image src="/assets/logo-github.svg" alt="GitHub Copilot" width={48} height={48} />
+            {[
+              { src: "/assets/logo-chatgpt.svg", alt: "ChatGPT" },
+              { src: "/assets/logo-claude.svg", alt: "Claude" },
+              { src: "/assets/logo-cursor.svg", alt: "Cursor" },
+              { src: "/assets/logo-github.svg", alt: "GitHub Copilot" },
+            ].map(({ src, alt }) => (
+              <div
+                key={alt}
+                className="size-[48px] shrink-0 overflow-hidden rounded-[16px]"
+                style={{ backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)" }}
+              >
+                <Image src={src} alt={alt} width={48} height={48} />
+              </div>
+            ))}
           </div>
           <p className="font-heading text-[28px] font-[620] leading-[1.1] tracking-[-0.3px] text-white">
             Works with ChatGPT, Claude, Cursor, Copilot, or any AI that can
