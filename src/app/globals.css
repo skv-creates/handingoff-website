@@ -58,8 +58,9 @@ body {
 }
 
 @keyframes voice-bar {
-  0%, 100% { transform: scaleY(0.25); }
-  50% { transform: scaleY(1); }
+  0%, 100% { transform: scaleY(0.3); }
+  40%       { transform: scaleY(0.75); }
+  65%       { transform: scaleY(0.45); }
 }
 
 .hero-texture::before {

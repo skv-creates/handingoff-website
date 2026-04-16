@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 const BARS: { height: number; duration: string; delay: string }[] = [
-  { height: 9,  duration: "0.65s", delay: "0ms"   },
-  { height: 13, duration: "0.80s", delay: "150ms"  },
-  { height: 16, duration: "0.70s", delay: "75ms"   },
-  { height: 13, duration: "0.85s", delay: "225ms"  },
-  { height: 9,  duration: "0.60s", delay: "350ms"  },
+  { height: 9,  duration: "1.1s", delay: "0ms"   },
+  { height: 13, duration: "1.3s", delay: "180ms"  },
+  { height: 16, duration: "0.9s", delay: "90ms"   },
+  { height: 13, duration: "1.2s", delay: "270ms"  },
+  { height: 9,  duration: "1.0s", delay: "360ms"  },
 ];
 
 export function CustomCursor({
