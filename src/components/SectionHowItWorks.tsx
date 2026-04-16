@@ -30,27 +30,32 @@ export function SectionHowItWorks() {
           Install and go
         </h2>
 
-        <div className="flex w-full flex-col gap-[29px]">
-          {/* Step indicators */}
-          <div className="flex w-full items-center">
-            {steps.map((step, i) => (
-              <div key={step.number} className="flex flex-1 items-center gap-[8px] pr-[8px]">
-                <div className="flex size-[32px] shrink-0 items-center justify-center rounded-[var(--space-sm)] bg-[var(--color-surface)]">
-                  <span className="font-mono text-[12px] font-medium leading-[1.5] text-[var(--color-text-secondary)]">
-                    {step.number}
-                  </span>
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="h-px min-w-px flex-1 bg-[var(--color-border-subtle)]" />
-                )}
+        {/* Steps — each column holds its own badge + text, connector is absolutely positioned */}
+        <div className="flex w-full flex-col gap-[32px] sm:flex-row sm:gap-0">
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className={`relative flex flex-1 flex-col gap-[29px] ${
+                i < steps.length - 1 ? "sm:pr-[28px]" : ""
+              }`}
+            >
+              {/* Badge */}
+              <div className="flex size-[32px] shrink-0 items-center justify-center rounded-[var(--space-sm)] bg-[var(--color-surface)]">
+                <span className="font-mono text-[12px] font-medium leading-[1.5] text-[var(--color-text-secondary)]">
+                  {step.number}
+                </span>
               </div>
-            ))}
-          </div>
 
-          {/* Step descriptions */}
-          <div className="flex w-full items-start">
-            {steps.map((step) => (
-              <div key={step.number} className="flex flex-1 flex-col gap-[16px] pr-[28px]">
+              {/* Connector — spans from badge right-edge to next column left-edge */}
+              {i < steps.length - 1 && (
+                <div
+                  className="absolute hidden h-px bg-[var(--color-border-subtle)] sm:block"
+                  style={{ top: 16, left: 40, right: 0 }}
+                />
+              )}
+
+              {/* Text */}
+              <div className="flex flex-col gap-[16px]">
                 <h3 className="font-heading text-[28px] font-[620] leading-[1.1] tracking-[-0.3px] text-white">
                   {step.title}
                 </h3>
@@ -58,8 +63,8 @@ export function SectionHowItWorks() {
                   {step.description}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
